@@ -10,7 +10,7 @@
         <span
           @mouseenter="handleTitleMouseEnter"
           @mouseleave="handleTitleMouseLeave"
-          >Na{{ hover ? 'ï' : 'i' }}ve UI</span
+          >X{{ hover ? 'ï' : 'i' }}uMu UI</span
         >
       </n-h1>
       <n-p style="font-size: 16px; margin-top: 0; margin-bottom: 0">

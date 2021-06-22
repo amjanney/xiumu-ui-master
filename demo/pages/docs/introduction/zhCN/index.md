@@ -1,36 +1,357 @@
 <!--anchor:on-->
 
-# Naive UI
+# XiuMu UI
 
-Naive UI 是一个 Vue3 的组件库。
+XiuMu UI 是一个 Vite+Vue3 的组件库。
 
-要了解如何安装，参见[安装](installation)。
+> 注意：前端圈内部练习使用，无商业用途
 
-它比较完整，主题可调，用 TypeScript 写的，不算太慢。
+安装，参见[安装](installation)。
+
+## 应用的技术
+
+- typescript
+
+- jsx
+
+- vite
+
+- vue3
 
 ## 比较完整
 
-有超过 70 个组件，希望能帮你少写点代码。
+有超过 70 个组件，希望有兄弟们帮少写点代码。
 
-顺便一提，它们全都可以 treeshaking。
+## Components
 
-## 主题可调
+- [x] form
+  - form-item
+    - new
+      - `show-feedback` prop
+- [x] affix
+  - deprecate
+    - `target` => `listen-to`
+- [x] alert
+- [x] anchor
+  - new
+    - `show-rail` props
+    - `show-background` props
+  - deprecate
+    - `target` => `listen-to`
+- [x] auto-complete
+  - break
+    - `v-model` => `v-model:value`
+  - deprecate
+    - `on-input` => `on-update:value`
+  - new
+    - `on-blur`
+    - `on-focus`
+- [x] avatar
+- [x] back-top
+  - new
+    - `show` controlled show
+    - `on-update:show`
+    - `to` teleport target
+  - deprecate
+    - `on-show` => `on-update:show`
+    - `on-hide` => `on-update:show`
+    - `target` => `listen-to`
+- [x] badge
+- [x] breadcrumb
+- [x] button
+- [x] button-group
+- [x] card
+- [x] cascader
+  - break
+    - `v-model` => `v-model:value`
+    - `on-load` has different usage
+    - `leaf-only` has different meaning
+  - new
+    - `cascade` prop
+    - `show-path` prop
+    - `default-value` prop
+  - deprecated
+    - `on-change` => `on-update:value`
+- [x] checkbox
+  - checkbox
+    - break
+      - `value` only supports `string`
+    - deprecate
+      - `on-change` => `on-update:checked`
+    - new
+      - `default-checked` prop
+  - checkbox-group
+    - break
+      - `value` only supports `string` or `null`
+    - deprecate
+      - `on-change` => `on-update:value`
+- [x] code
+- [x] collapse
+  - deprecate
+    - `on-expanded-names-change` => `on-update:expanded-names`
+  - removed
+    - `v-model` => `v-model:expanded-names`
+- [x] config-consumer (deprecated)
+- [x] config-provider
+  - break
+    - `theme` use new theme from naive export
+    - `$NOs.theme` => `useOsTheme`
+    - `theme` => `legacy-theme`
+  - deprecate
+    - `as` => `tag`
+    - `styleScheme` won't working in next version
+  - new
+    - `date-locale` prop
+    - `locale` prop
+    - provide `useOsTheme` hook
+- [x] confirm => `dialog`
+  - break
+    - rename `confirm` to `dialog`
+  - remove
+    - `$NConfirm`, `$NModal` => `useDialog`
+- [x] data-table
+  - deprecate
+    - `on-filters-change` => `on-update:filters`
+    - `on-sorter-change` => `on-update:sorter`
+    - `on-checked-row-keys-change` => `on-update:checked-row-keys`
+    - `on-page-change` => `on-update:page`
+    - `on-page-size-change` => `on-update:page-size`
+- [x] date-picker
+  - break
+    - `v-model` => `v-model:value`
+  - deprecate
+    - `on-change` => `on-update:value`
+  - new
+    - `default-value` prop
+- [x] descriptions
+- [x] divider
+- [x] drawer
+  - break
+    - `v-model`
+  - deprecate
+    - `on-show` => `on-update:show`
+    - `on-hide` => `on-update:show`
+    - `target` => `to`
+    - `drawer-class` => `class`
+    - `drawer-style` => `style`
+  - new
+    - `display-directive` prop
+- [x] dropdown
+  - break
+    - `option.value` => `option.key`
+    - item must have unique key
+    - submenu must have unique key
+  - remove
+    - `submenu-width`
+    - `submenu-min-width`
+    - `submenu-max-width`
+  - new
+    - `option.icon`
+- [x] dynamic-input
+  - break
+    - `v-model` => `v-model:value`
+    - `on-clear` is removed
+  - deprecate
+    - `on-input` => `on-update:value`
+  - new
+    - `item-style` prop
+    - `min` prop
+    - `default-value` prop
+- [x] dynamic-tags
+  - break
+    - `v-model` => `v-model:value`
+- [x] element
+- [x] empty
+- [x] gradient-text
+- [x] grid
+- [x] icon
+- [x] input
+  - break
+    - `v-model` => `v-model:value`
+  - new
+    - `on-update:value` prop
+    - `default-value` prop
+- [x] input-group
+- [x] input-group-label
+- [x] input-number
+  - deprecate
+    - `on-change` => `on-update:value`
+  - new
+    - `default-value` prop
+- [x] layout
+  - layout-content, layout
+    - breaking `use-native-scrollbar` => `native-scrollbar`
+  - layout-sider
+    - breaking `use-native-scrollbar` => `native-scrollbar`
+    - deprecate
+      - `on-expand` => `on-update:collapsed`
+      - `on-collapse` => `on-update:collapsed`
+- [x] list
+- [x] loading-bar
+  - remove
+    - `$NLoadingBar`
+  - new
+    - `useLoadingBar`
+    - `n-loading-bar-provider`
+- [x] log
+  - deprecate
+    - `scrollToTop` => `scrollTo`
+    - `scrollToBottom` => `scrollTo`
+- [x] menu
+  - deprecate
+    - `on-expanded-names-change` => `on-update:expanded-keys`
+    - `on-select` => `on-update:value`
+    - `expanded-names` => `expanded-keys`
+    - `default-expanded-names` => `default-expanded-keys`
+    - `item.name` => `item.key`
+  - remove
+    - `item.titleExtra`
+    - `overlay-width`
+    - `overlay-min-width`
+- [x] message
+  - rewrite message using `n-message-provider`
+  - new
+    - `useMessage`
+  - deprecate
+    - `onHide` => `onLeave`
+    - `onAfterHide` => `onAfterLeave`
+  - remove
+    - `message.hide` => `message.destroy`
+- [x] modal
+  - rewrite with teleport
+  - new
+    - `display-directive`
+  - deprecate
+    - `v-model`
+    - `on-show` => `on-update:show`
+    - `on-hide` => `on-update:show`
+    - `overlay-style` => `style`
+  - remove
+    - default hide behavior for preset
+- [x] notification
+  - new
+    - `useNotification`
+  - deprecate
+    - `open` => `create`
+    - `onHide` => `onLeave`
+    - `onAfterShow` => `onAfterEnter`
+    - `onAfterHide` => `onAfterHide`
+- [x] pagination
+  - deprecate
+    - `on-change` => `on-update:page`
+    - `on-page-size-change` => `on-update:page-size`
+- [x] popconfirm
+- [x] popover
+  - new
+    - `default-show`
+    - `overlap`
+  - deprecate
+    - `#activator` => `#trigger`
+    - `overlay-xxx` => `body-xxx`
+  - remove
+    - `controller`
+    - `max-width`
+    - `width`
+    - `min-width`
+    - `manual` trigger is removed, use `show` to controll the popover
+    - `body-class`, use `class` instead
+    - `body-style`, use `style` instead
+- [x] popselect
+  - break
+    - `v-model` => `v-model:value`
+  - deprecate
+    - `on-change` => `on-update:value`
+- [x] progress
+- [x] radio
+  - radio-group
+    - break
+      - default `size` `'small'` => `'medium'`
+      - value only supports `string` or `null`
+    - deprecate
+      - `on-change` => `on-update:value`
+  - radio & radio-button
+    - break
+      - value only supports `string`
+      - `checked-value` => `checked`
+        - It is change to conform html standard usage
+      - `on-change` => `on-update:checked`
+        - `on-change` is now a native event
+- [x] result
+- [x] scrollbar
+- [x] select
+  - break
+    - `v-model` => `v-model:value`
+    - `on-scroll(event, container, content)` => `on-scroll(event)`
+    - `option.render(h, data)` => `option.render(data)`
+  - deprecated
+    - `on-change` => `on-update:value`
+- [x] slider
+  - deprecated
+    - `on-change` => `on-update:value`
+  - new
+    - `default-value` prop
+  - bug
+    - vue refs https://github.com/vuejs/vue-next/issues/2283
+    - drag logic
+- [x] space
+- [x] spin
+  - breaking
+    - `'in-small'`, `'in-medium'` and `'in-large'` size are removed
+  - deprecate
+    - `spinning` => `show`
+- [x] statistic
+- [x] steps
+- [x] switch
+  - remove
+    - `value` => `value`
+    - `change` => `on-update:value`
+- [x] table
+- [x] tabs
+  - deprecate
+    - `active-name` => `value`
+    - `on-active-name-change` => `on-update:value`
+- [x] tag
+  - break
+    - `v-model` => `v-model:value`
+  - deprecate
+    - `on-checked-change` => `on-update:checked`
+- [x] thing
+- [x] time
+  - break
+    - `type` default from `'relative'` to `'date-time'`
+- [x] time-picker
+  - break
+    - `v-model` => `v-model:value`
+- [x] timeline
+- [x] tooltip
+  - deprecate
+    - `#activator` => `#trigger`
+- [x] transfer
+  - break
+    - `v-model` => `v-model:value`
+  - deprecate
+    - `on-change` => `on-update:value`
+  - new
+    - `default-value` prop
+- [x] tree
+  - break
+    - `v-model` => `v-model:selected-keys`
+  - deprecate
+    - `on-selected-keys-change` => `on-update:selected-keys`
+    - `on-checked-keys-change` => `on-update:checked-keys`
+    - `on-expanded-keys-change` => `on-update:expanded-keys`
+- [x] typography
+  - breaking
+    - text, p
+      - `depth` from `primary` ... `tertiary` => `1`, `2`, `3`
+  - deprecate
+    - text
+      - `as` => `tag`
+- [x] upload
+- [x] nimbus-service-layout
 
-我们提供了一个使用 TypeScript 构建的先进的类型安全主题系统。你只需要提供一个样式覆盖的对象，剩下的都交给我们。
-
-顺便一提，不用 less、sass、css 变量，也不用 webpack 的 loaders。以及你可以试试右下角的主题编辑器。
-
-## 使用 TypeScript
-
-Naive UI 全量使用 TypeScript 编写，和你的 TypeScript 项目无缝衔接。
-
-顺便一提，你不需要导入任何 CSS 就能让组件正常工作。
-
-## 不算太慢
-
-我尽力让它不要太慢。至少 select、tree、transfer、table、cascader 都可以用虚拟列表。
-
-顺便一提，...，没有顺便了。祝你使用愉快。
+  - breaking
+    - `v-model` => `v-model:value`
 
 ## 社区
 

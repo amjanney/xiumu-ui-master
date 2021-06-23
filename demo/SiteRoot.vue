@@ -34,7 +34,7 @@ export default {
   components: {
     Site
   },
-  setup () {
+  setup() {
     initRouter(useRouter(), useRoute())
     return siteSetup()
   }

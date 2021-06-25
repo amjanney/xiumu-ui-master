@@ -25,6 +25,7 @@ module.exports = {
     'process.env.TUSIMPLE': !!process.env.TUSIMPLE,
     __DEV__: process.env.NODE_ENV !== 'production'
   },
+  // 预构建需要依赖的项
   optimizeDeps: {
     include: [
       '@css-render/plugin-bem',

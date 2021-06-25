@@ -1,8 +1,8 @@
-<p align="center">
+<!-- <p align="center">
   <img width="144px" src="https://naiveui.oss-cn-hongkong.aliyuncs.com/naivelogo.svg" />
-</p>
+</p> -->
 
-<h1 align="center">Naive UI</h1>
+<h1 align="center">Xiumu UI</h1>
 <p align="center">A Vue 3 Component Library</p>
 <p align="center"><b>Fairly Complete, Customizable Themes, Uses TypeScript, Not too Slow</b></p>
 <p align="center">Kinda Interesting</p>

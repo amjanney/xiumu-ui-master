@@ -717,3 +717,27 @@ export function createComponentMenuOptions ({ lang, theme, mode }) {
     )
   ])
 }
+
+export function createComponentTestMenuOptions ({ lang, theme, mode }) {
+  return createItems(lang, theme, '/componentsTest', [
+    appendCounts({
+      zh: '通用组件',
+      en: 'Common Components',
+      type: 'group',
+      children: [
+        {
+          en: 'Button',
+          zh: '按钮',
+          enSuffix: true,
+          path: '/test'
+        },
+        {
+          en: 'Button2',
+          zh: '按钮2',
+          enSuffix: true,
+          path: '/test2'
+        }
+      ]
+    })
+  ])
+}

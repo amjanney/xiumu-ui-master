@@ -5,6 +5,7 @@
       <span v-if="!isMobile">XiuMu UI</span>
     </n-text>
     <div :style="!isMobile ? 'display: flex; align-items: center;' : ''">
+      <!-- 头部导航 -->
       <div class="nav-menu" v-if="!(isMobile || isTablet)">
         <n-menu
           mode="horizontal"
@@ -13,6 +14,7 @@
           @update:value="handleMenuUpdateValue"
         />
       </div>
+      <!-- 搜索 -->
       <n-auto-complete
         v-model:value="searchPattern"
         :style="!isMobile ? 'width: 216px; margin-left: 24px' : undefined"
@@ -91,7 +93,8 @@ import {
   useFlattenedDocOptions,
   useConfigProviderName,
   useDocOptions,
-  useComponentOptions
+  useComponentOptions,
+  useComponentTestOptions
 } from './store'
 
 // match substr
@@ -110,6 +113,7 @@ const locales = {
     home: '首页',
     doc: '文档',
     component: '组件',
+    componentTest: '组件测试',
     common: '常规',
     debug: '调试',
     alreadyHome: '别点了，你已经在首页了',
@@ -123,6 +127,7 @@ const locales = {
     home: 'Home',
     doc: 'Docs',
     component: 'Components',
+    componentTest: 'ComponentTest',
     common: 'Common',
     debug: 'Debug',
     alreadyHome: 'You are already in home page. No clicking anymore.',
@@ -160,6 +165,10 @@ export default {
         {
           key: 'component',
           title: t('component')
+        },
+        {
+          key: 'componentTest',
+          title: t('componentTest')
         }
       ]
     })
@@ -182,6 +191,12 @@ export default {
             themeAndLocaleReg.exec(route.path)[0] + '/components/button'
           )
         }
+      } else if (value === 'componentTest') {
+        if (!/^(\/[^/]+){2}\/componentsTest/.test(route.path)) {
+          router.push(
+            themeAndLocaleReg.exec(route.path)[0] + '/componentsTest/test'
+          )
+        }
       }
     }
     const menuValueRef = computed(() => {
@@ -194,6 +209,8 @@ export default {
     // mobile options
     const docOptionsRef = useDocOptions()
     const componentOptionsRef = useComponentOptions()
+    const componentTestOptionsRef = useComponentTestOptions()
+    console.log(componentTestOptionsRef)
     const mobileMenuOptionsRef = computed(() => {
       return [
         {
@@ -217,6 +234,11 @@ export default {
           key: 'component',
           title: t('component'),
           children: componentOptionsRef.value
+        },
+        {
+          key: 'componentTest',
+          title: t('componentTest'),
+          children: componentTestOptionsRef.value
         },
         {
           key: 'github',

@@ -174,34 +174,43 @@ export default {
     })
     const themeAndLocaleReg = /^(\/[^/]+){2}/
     function handleMenuUpdateValue (value) {
-      if (value === 'github') {
-        window.open(repoUrl, '_blank')
-      }
-      if (value === 'home') {
-        router.push(themeAndLocaleReg.exec(route.path)[0])
-      } else if (value === 'doc') {
-        if (!/^(\/[^/]+){2}\/docs/.test(route.path)) {
+      switch (value) {
+        case 'github':
+          // 跳转github
+          window.open(repoUrl, '_blank')
+          break
+        case 'home':
+          // 跳转home
+          router.push(themeAndLocaleReg.exec(route.path)[0])
+          break
+        case 'doc':
+          // 跳转文档
           router.push(
             themeAndLocaleReg.exec(route.path)[0] + '/docs/introduction'
           )
-        }
-      } else if (value === 'component') {
-        if (!/^(\/[^/]+){2}\/components/.test(route.path)) {
+          break
+        case 'component':
+          // 跳转组件
           router.push(
             themeAndLocaleReg.exec(route.path)[0] + '/components/button'
           )
-        }
-      } else if (value === 'componentTest') {
-        if (!/^(\/[^/]+){2}\/componentsTest/.test(route.path)) {
+          break
+        case 'componentTest':
+          // 跳转组件测试
           router.push(
             themeAndLocaleReg.exec(route.path)[0] + '/componentsTest/test'
           )
-        }
+          break
+        default:
+          // 跳转home
+          router.push(themeAndLocaleReg.exec(route.path)[0])
+          break
       }
     }
     const menuValueRef = computed(() => {
       if (/\/docs\//.test(route.path)) return 'doc'
       if (/\/components\//.test(route.path)) return 'component'
+      if (/\/componentsTest\//.test(route.path)) return 'componentTest'
       else if (route.name === 'home') return 'home'
       return null
     })
@@ -210,7 +219,6 @@ export default {
     const docOptionsRef = useDocOptions()
     const componentOptionsRef = useComponentOptions()
     const componentTestOptionsRef = useComponentTestOptions()
-    console.log(componentTestOptionsRef)
     const mobileMenuOptionsRef = computed(() => {
       return [
         {

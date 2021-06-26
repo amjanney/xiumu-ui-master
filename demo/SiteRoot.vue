@@ -1,3 +1,12 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-06-22 16:40:25
+ * @LastEditTime: 2021-06-22 19:33:14
+ * @LastEditors: Please set LastEditors
+ * @Description: 入口文件，相当于App.vue
+ * @FilePath: /xiumu-ui-master/demo/SiteRoot.vue
+-->
+
 <template>
   <component
     :is="configProvider"
@@ -34,7 +43,7 @@ export default {
   components: {
     Site
   },
-  setup () {
+  setup() {
     initRouter(useRouter(), useRoute())
     return siteSetup()
   }

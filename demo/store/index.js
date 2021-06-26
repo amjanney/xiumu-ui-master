@@ -13,6 +13,7 @@ import { TsConfigProvider } from '../../themes/tusimple/src'
 import { i18n, useIsMobile } from '../utils/composables'
 import {
   createDocumentationMenuOptions,
+  createComponentTestMenuOptions,
   createComponentMenuOptions
 } from './menu-options'
 import hljs from './hljs'
@@ -109,6 +110,13 @@ const componentOptionsRef = computed(() =>
     mode: displayModeRef.value
   })
 )
+const componentTestOptionsRef = computed(() =>
+  createComponentTestMenuOptions({
+    theme: rawThemeNameRef.value,
+    lang: localeNameRef.value,
+    mode: displayModeRef.value
+  })
+)
 const flattenedDocOptionsRef = computed(() => {
   const flattenedItems = []
   const traverse = (items) => {
@@ -120,6 +128,7 @@ const flattenedDocOptionsRef = computed(() => {
   }
   traverse(docOptionsRef.value)
   traverse(componentOptionsRef.value)
+  traverse(componentTestOptionsRef.value)
   return flattenedItems
 })
 
@@ -174,6 +183,10 @@ export function useDocOptions () {
 
 export function useComponentOptions () {
   return componentOptionsRef
+}
+
+export function useComponentTestOptions () {
+  return componentTestOptionsRef
 }
 
 export function useFlattenedDocOptions () {

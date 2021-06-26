@@ -5,6 +5,7 @@
       <span v-if="!isMobile">XiuMu UI</span>
     </n-text>
     <div :style="!isMobile ? 'display: flex; align-items: center;' : ''">
+      <!-- 头部导航 -->
       <div class="nav-menu" v-if="!(isMobile || isTablet)">
         <n-menu
           mode="horizontal"
@@ -13,6 +14,7 @@
           @update:value="handleMenuUpdateValue"
         />
       </div>
+      <!-- 搜索 -->
       <n-auto-complete
         v-model:value="searchPattern"
         :style="!isMobile ? 'width: 216px; margin-left: 24px' : undefined"
@@ -91,7 +93,8 @@ import {
   useFlattenedDocOptions,
   useConfigProviderName,
   useDocOptions,
-  useComponentOptions
+  useComponentOptions,
+  useComponentTestOptions
 } from './store'
 
 // match substr
@@ -110,6 +113,7 @@ const locales = {
     home: '首页',
     doc: '文档',
     component: '组件',
+    componentTest: '组件测试',
     common: '常规',
     debug: '调试',
     alreadyHome: '别点了，你已经在首页了',
@@ -123,6 +127,7 @@ const locales = {
     home: 'Home',
     doc: 'Docs',
     component: 'Components',
+    componentTest: 'ComponentTest',
     common: 'Common',
     debug: 'Debug',
     alreadyHome: 'You are already in home page. No clicking anymore.',
@@ -160,33 +165,52 @@ export default {
         {
           key: 'component',
           title: t('component')
+        },
+        {
+          key: 'componentTest',
+          title: t('componentTest')
         }
       ]
     })
     const themeAndLocaleReg = /^(\/[^/]+){2}/
     function handleMenuUpdateValue (value) {
-      if (value === 'github') {
-        window.open(repoUrl, '_blank')
-      }
-      if (value === 'home') {
-        router.push(themeAndLocaleReg.exec(route.path)[0])
-      } else if (value === 'doc') {
-        if (!/^(\/[^/]+){2}\/docs/.test(route.path)) {
+      switch (value) {
+        case 'github':
+          // 跳转github
+          window.open(repoUrl, '_blank')
+          break
+        case 'home':
+          // 跳转home
+          router.push(themeAndLocaleReg.exec(route.path)[0])
+          break
+        case 'doc':
+          // 跳转文档
           router.push(
             themeAndLocaleReg.exec(route.path)[0] + '/docs/introduction'
           )
-        }
-      } else if (value === 'component') {
-        if (!/^(\/[^/]+){2}\/components/.test(route.path)) {
+          break
+        case 'component':
+          // 跳转组件
           router.push(
             themeAndLocaleReg.exec(route.path)[0] + '/components/button'
           )
-        }
+          break
+        case 'componentTest':
+          // 跳转组件测试
+          router.push(
+            themeAndLocaleReg.exec(route.path)[0] + '/componentsTest/test'
+          )
+          break
+        default:
+          // 跳转home
+          router.push(themeAndLocaleReg.exec(route.path)[0])
+          break
       }
     }
     const menuValueRef = computed(() => {
       if (/\/docs\//.test(route.path)) return 'doc'
       if (/\/components\//.test(route.path)) return 'component'
+      if (/\/componentsTest\//.test(route.path)) return 'componentTest'
       else if (route.name === 'home') return 'home'
       return null
     })
@@ -194,6 +218,7 @@ export default {
     // mobile options
     const docOptionsRef = useDocOptions()
     const componentOptionsRef = useComponentOptions()
+    const componentTestOptionsRef = useComponentTestOptions()
     const mobileMenuOptionsRef = computed(() => {
       return [
         {
@@ -217,6 +242,11 @@ export default {
           key: 'component',
           title: t('component'),
           children: componentOptionsRef.value
+        },
+        {
+          key: 'componentTest',
+          title: t('componentTest'),
+          children: componentTestOptionsRef.value
         },
         {
           key: 'github',

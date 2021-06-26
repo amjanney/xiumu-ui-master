@@ -41,7 +41,11 @@ import { useRoute, useRouter } from 'vue-router'
 import { findMenuValue } from '../utils/route'
 import { useIsMobile, useIsTablet } from '../utils/composables'
 import SiteFooter from './home/Footer.vue'
-import { useDocOptions, useComponentOptions } from '../store'
+import {
+  useDocOptions,
+  useComponentOptions,
+  useComponentTestOptions
+} from '../store'
 import { useMemo } from 'vooks'
 
 export default {
@@ -54,11 +58,20 @@ export default {
     const layoutInstRef = ref(null)
     const docOptionsRef = useDocOptions()
     const componentOptionsRef = useComponentOptions()
-    const optionsRef = computed(() =>
-      route.path.includes('/docs/')
-        ? docOptionsRef.value
-        : componentOptionsRef.value
-    )
+    const componentTestOptionsRef = useComponentTestOptions()
+    const optionsRef = computed(() => {
+      if (route.path.includes('/docs/')) {
+        // 文档路由
+        return docOptionsRef.value
+      } else if (route.path.includes('/components/')) {
+        // 组件路由
+        return componentOptionsRef.value
+      } else {
+        // 组件测试路由
+        // (route.path.includes('/componentsTest/'))
+        return componentTestOptionsRef.value
+      }
+    })
 
     const menuValueRef = computed(() => {
       return findMenuValue(optionsRef.value, route.path)

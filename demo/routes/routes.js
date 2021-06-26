@@ -778,6 +778,28 @@ export const zhComponentRoutes = [
   }
 ]
 
+export const enComponentRoutesTest = [
+  {
+    path: 'test',
+    component: () => import('../../src/layout/demos/enUS/index.demo-entry.md')
+  },
+  {
+    path: 'test2',
+    component: () => import('../../src/layout/demos/enUS/index.demo-entry.md')
+  }
+]
+
+export const zhComponentRoutesTest = [
+  {
+    path: 'test',
+    component: () => import('../../src/layout/demos/zhCN/index.demo-entry.md')
+  },
+  {
+    path: 'test2',
+    component: () => import('../../src/layout/demos/zhCN/index.demo-entry.md')
+  }
+]
+
 export const routes = [
   {
     name: 'home',
@@ -807,6 +829,18 @@ export const routes = [
     path: '/zh-CN/:theme/components',
     component: () => import('../pages/Layout.vue'),
     children: zhComponentRoutes
+  },
+  {
+    name: 'enComponentsTest',
+    path: '/en-US/:theme/componentsTest',
+    component: () => import('../pages/Layout.vue'),
+    children: enComponentRoutesTest
+  },
+  {
+    name: 'zhComponentsTest',
+    path: '/zh-CN/:theme/componentsTest',
+    component: () => import('../pages/Layout.vue'),
+    children: zhComponentRoutesTest
   },
   {
     name: 'not-found',

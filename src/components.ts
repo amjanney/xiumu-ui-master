@@ -74,5 +74,7 @@ export * from './transfer'
 export * from './tree'
 export * from './typography'
 export * from './upload'
-
 export * from './legacy-grid'
+
+// 重写组件写在这里
+export * from './_components/test'

@@ -726,8 +726,8 @@ export function createComponentTestMenuOptions ({ lang, theme, mode }) {
       type: 'group',
       children: [
         {
-          en: 'Button',
-          zh: '按钮',
+          en: 'Test',
+          zh: '测试',
           enSuffix: true,
           path: '/test'
         },

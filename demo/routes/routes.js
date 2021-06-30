@@ -781,7 +781,8 @@ export const zhComponentRoutes = [
 export const enComponentRoutesTest = [
   {
     path: 'test',
-    component: () => import('../../src/layout/demos/enUS/index.demo-entry.md')
+    component: () =>
+      import('../../src/_components/test/demo/index.demo_entry.md')
   },
   {
     path: 'test2',
@@ -792,7 +793,8 @@ export const enComponentRoutesTest = [
 export const zhComponentRoutesTest = [
   {
     path: 'test',
-    component: () => import('../../src/layout/demos/zhCN/index.demo-entry.md')
+    component: () =>
+      import('../../src/_components/test/demo/index.demo_entry.md')
   },
   {
     path: 'test2',
